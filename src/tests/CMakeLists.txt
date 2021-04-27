@@ -31,3 +31,9 @@ target_compile_sycl(arrsin_sycl_double arrsin_sycl.cpp)
 target_compile_definitions(arrsin_sycl_double PRIVATE FPTYPE=double)
 endif()
 
+if (CMAKE_NVHPC_COMPILER)
+add_executable(arrsin_nvpar arrsin_par.cpp)
+set(GPU_ARCH 61) # Pascal sm_61
+target_compile_nvhpc(arrsin_nvpar ${GPU_ARCH} arrsin_par.cpp)
+endif()
+

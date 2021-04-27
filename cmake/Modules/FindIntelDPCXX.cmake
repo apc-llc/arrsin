@@ -14,7 +14,6 @@ function(target_compile_sycl target)
 
 if (CMAKE_DPCXX_COMPILER)
 set(sources ${ARGN})
-set(CMAKE_DPCXX_FLAGS "-stdpar")
 foreach(source IN LISTS sources)
 	set_source_files_properties(${source} PROPERTIES LANGUAGE DPCXX)
 endforeach()
