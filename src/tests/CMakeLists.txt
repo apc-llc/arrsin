@@ -33,7 +33,7 @@ endif()
 
 if (CMAKE_NVHPC_COMPILER)
 add_executable(arrsin_nvpar arrsin_par.cpp)
-set(GPU_ARCH 61) # Pascal sm_61
-target_compile_nvhpc(arrsin_nvpar ${GPU_ARCH} arrsin_par.cpp)
+set(GPU_ARCH 60) # Pascal
+target_compile_nvpar(arrsin_nvpar ${GPU_ARCH} arrsin_par.cpp)
 endif()
 
