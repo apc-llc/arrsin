@@ -7,22 +7,26 @@
 #include <vector>
 #include "check.h"
 
+#include "xsimd/xsimd.hpp"
+
 using namespace std;
+
+using vector_type = std::vector<double, xsimd::aligned_allocator<double, XSIMD_DEFAULT_ALIGNMENT>>;
 
 int main(int argc, char* argv[])
 {
 	std::mt19937 gen;
 	std::uniform_real_distribution<> dist(-1, 1);
 
-	vector<double> x(1e8);
+	vector_type x(1e8);
 	generate(x.begin(), x.end(), [&dist, &gen]()
 	{
 		return dist(gen);
 	});
 
 	auto t1 = std::chrono::system_clock::now();
-	std::transform(std::execution::par_unseq, x.begin(), x.end(), x.begin(),
-		[&](double xi) -> double { return sin(xi); });
+	xsimd::transform(/*std::execution::par_unseq,*/ x.begin(), x.end(), x.begin(),
+		[&](const auto xi) { return xsimd::sin(xi); });
 	auto t2 = std::chrono::system_clock::now();
 
 	auto time = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
@@ -33,7 +37,7 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
-// ./arrsin_par
-// 0.290954
+// ./arrsin_xsimd
+// 0.376184
 // check sum = -3187.199840
 

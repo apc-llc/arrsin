@@ -13,6 +13,11 @@ target_link_libraries(arrsin_par PRIVATE tbb)
 
 add_subdirectory(ThirdParty/xsimd)
 
+add_executable(arrsin_xsimd arrsin_xsimd.cpp)
+set_property(TARGET arrsin_xsimd PROPERTY CXX_STANDARD 17)
+target_compile_options(arrsin_xsimd PUBLIC $<$<COMPILE_LANGUAGE:CXX>:-g -O3 -ffast-math -mavx>)
+target_link_libraries(arrsin_xsimd PRIVATE tbb xsimd)
+
 add_executable(arrsin_par_xsimd arrsin_par_xsimd.cpp)
 set_property(TARGET arrsin_par_xsimd PROPERTY CXX_STANDARD 17)
 target_compile_options(arrsin_par_xsimd PUBLIC $<$<COMPILE_LANGUAGE:CXX>:-g -O3 -ffast-math -mavx>)

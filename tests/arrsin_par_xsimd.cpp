@@ -5,6 +5,7 @@
 #include <execution>
 #include <random>
 #include <vector>
+#include "check.h"
 
 #include "xsimd/xsimd.hpp"
 
@@ -14,8 +15,7 @@ using vector_type = std::vector<double, xsimd::aligned_allocator<double, XSIMD_D
 
 int main(int argc, char* argv[])
 {
-	std::random_device rd;
-	std::mt19937 gen(rd());
+	std::mt19937 gen;
 	std::uniform_real_distribution<> dist(-1, 1);
 
 	vector_type x(1e8);
@@ -36,9 +36,12 @@ int main(int argc, char* argv[])
 	auto time = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
 	printf("%f\n", time / 1e6);
 
+	check(x);
+
 	return 0;
 }
 
-// ./arrsin
-// 1.098075
+// ./arrsin_par_xsimd
+// 0.104423
+// check sum = -3187.199840
 
