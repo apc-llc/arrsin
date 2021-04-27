@@ -11,6 +11,17 @@
 
 using namespace std;
 
+class prefer_gpu : public sycl::device_selector
+{
+public :
+	int operator()(const sycl::device &dev) const override
+	{
+		if (dev.is_gpu()) return 1;
+		if (dev.is_cpu()) return 2;
+		return 0;
+	}
+};
+
 int main(int argc, char* argv[])
 {
 	std::mt19937 gen;
@@ -22,7 +33,11 @@ int main(int argc, char* argv[])
 		return dist(gen);
 	});
 
-	sycl::queue q;
+	prefer_gpu selector;
+	sycl::queue q(selector);
+	std::cout << "Executing on " << q.get_device().get_info<sycl::info::device::name>() << std::endl;
+	std::cout << "preferred_vector_width_double = " << q.get_device().get_info<sycl::info::device::preferred_vector_width_double>() << std::endl;
+
 	double* x_dev = sycl::malloc_device<double>(x.size(), q);
 
 	std::copy(x.data(), x.data() + x.size(), x_dev);
