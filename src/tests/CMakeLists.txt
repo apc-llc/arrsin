@@ -32,8 +32,14 @@ target_compile_definitions(arrsin_sycl_double PRIVATE FPTYPE=double)
 endif()
 
 if (CMAKE_NVHPC_COMPILER)
-add_executable(arrsin_nvpar arrsin_par.cpp)
+add_executable(arrsin_nvpar_float arrsin_nvpar.cpp)
 set(GPU_ARCH 60) # Pascal
-target_compile_nvpar(arrsin_nvpar ${GPU_ARCH} arrsin_par.cpp)
+target_compile_nvpar(arrsin_nvpar_float ${GPU_ARCH} arrsin_nvpar.cpp)
+target_compile_definitions(arrsin_nvpar_float PRIVATE FPTYPE=float)
+
+add_executable(arrsin_nvpar_double arrsin_nvpar.cpp)
+set(GPU_ARCH 60) # Pascal
+target_compile_nvpar(arrsin_nvpar_double ${GPU_ARCH} arrsin_nvpar.cpp)
+target_compile_definitions(arrsin_nvpar_double PRIVATE FPTYPE=double)
 endif()
 
