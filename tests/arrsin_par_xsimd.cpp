@@ -24,9 +24,13 @@ int main(int argc, char* argv[])
 		return dist(gen);
 	});
 
+	constexpr std::size_t simd_size = xsimd::simd_type<double>::size;
+	std::size_t simd_length = x.size() / simd_size;
+
 	auto t1 = std::chrono::system_clock::now();
-	xsimd::transform(/*std::execution::par_unseq,*/ x.begin(), x.end(), x.begin(),
-		[&](const auto xi) { return xsimd::sin(xi); });
+	auto data = reinterpret_cast<xsimd::simd_type<double>::batch_type*>(x.data());
+	std::transform(std::execution::par_unseq, data, data + simd_length, data,
+		[&](const auto& xi) { return xsimd::sin(xi); });
 	auto t2 = std::chrono::system_clock::now();
 
 	auto time = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
