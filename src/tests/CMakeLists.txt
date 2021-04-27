@@ -22,7 +22,12 @@ target_compile_options(arrsin_par_xsimd PUBLIC $<$<COMPILE_LANGUAGE:CXX>:-g -O3 
 target_link_libraries(arrsin_par_xsimd PRIVATE tbb xsimd)
 
 if (CMAKE_DPCXX_COMPILER)
-add_executable(arrsin_sycl arrsin_sycl.cpp)
-target_compile_sycl(arrsin_sycl arrsin_sycl.cpp)
+add_executable(arrsin_sycl_float arrsin_sycl.cpp)
+target_compile_sycl(arrsin_sycl_float arrsin_sycl.cpp)
+target_compile_definitions(arrsin_sycl_float PRIVATE FPTYPE=float)
+
+add_executable(arrsin_sycl_double arrsin_sycl.cpp)
+target_compile_sycl(arrsin_sycl_double arrsin_sycl.cpp)
+target_compile_definitions(arrsin_sycl_double PRIVATE FPTYPE=double)
 endif()
 

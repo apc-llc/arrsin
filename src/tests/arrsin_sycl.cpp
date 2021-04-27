@@ -11,6 +11,8 @@
 
 using namespace std;
 
+using fptype = FPTYPE;
+
 class prefer_gpu : public sycl::device_selector
 {
 public :
@@ -27,7 +29,7 @@ int main(int argc, char* argv[])
 	std::mt19937 gen;
 	std::uniform_real_distribution<> dist(-1, 1);
 
-	vector<double> x(1e8);
+	vector<fptype> x(1e8);
 	generate(x.begin(), x.end(), [&dist, &gen]()
 	{
 		return dist(gen);
@@ -36,15 +38,15 @@ int main(int argc, char* argv[])
 	prefer_gpu selector;
 	sycl::queue q(selector);
 	std::cout << "Executing on " << q.get_device().get_info<sycl::info::device::name>() << std::endl;
-	std::cout << "preferred_vector_width_double = " << q.get_device().get_info<sycl::info::device::preferred_vector_width_double>() << std::endl;
+	//std::cout << "preferred_vector_width_fptype = " << q.get_device().get_info<sycl::info::device::preferred_vector_width_fptype>() << std::endl;
 
-	double* x_dev = sycl::malloc_device<double>(x.size(), q);
+	fptype* x_dev = sycl::malloc_device<fptype>(x.size(), q);
 
 	std::copy(x.data(), x.data() + x.size(), x_dev);
 
 	auto t1 = std::chrono::system_clock::now();
 	std::transform(oneapi::dpl::execution::make_device_policy(q), x_dev, x_dev + x.size(), x_dev,
-		[&](double xi) -> double { return cl::sycl::sin(xi); });
+		[&](fptype xi) -> fptype { return cl::sycl::sin(xi); });
 	q.wait();
 	auto t2 = std::chrono::system_clock::now();
 
@@ -59,5 +61,12 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
-// ./arrsin_sycl
+// ./arrsin_sycl_float 
+// Executing on Intel(R) Gen9 HD Graphics NEO
+// 0.314744
+// check sum = -3187.199946
+// ./arrsin_sycl_double
+// Executing on Intel(R) Gen9 HD Graphics NEO
+// 0.435768
+// check sum = -3187.199840
 
