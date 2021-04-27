@@ -1,0 +1,3 @@
+[submodule "tests/xsimd"]
+	path = tests/ThirdParty/xsimd
+	url = https://github.com/xtensor-stack/xsimd.git
