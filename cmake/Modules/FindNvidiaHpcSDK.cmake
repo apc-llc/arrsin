@@ -17,7 +17,7 @@ set(sources ${ARGN})
 foreach(source IN LISTS sources)
 	set_source_files_properties(${source} PROPERTIES
 		LANGUAGE NVHPC
-		COMPILE_FLAGS "-stdpar -std=c++17 -gpu=cuda11.1,cc${gpu_arch}")
+		COMPILE_FLAGS "-stdpar -std=c++17 -gpu=cuda11.2,cc${gpu_arch}")
 endforeach()
 set_target_properties(${target} PROPERTIES
 	LINKER_LANGUAGE NVHPC

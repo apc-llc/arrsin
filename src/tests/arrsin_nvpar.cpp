@@ -28,10 +28,10 @@ int main(int argc, char* argv[])
 
 	thrust::copy(x.begin(), x.end(), x_dev.begin());
 
-	auto t1 = std::chrono::system_clock::now();
+	auto t1 = std::chrono::high_resolution_clock::now();
 	std::transform(std::execution::par_unseq, x_dev.begin(), x_dev.end(), x_dev.begin(),
 		[&](fptype xi) -> fptype { return sin(xi); });
-	auto t2 = std::chrono::system_clock::now();
+	auto t2 = std::chrono::high_resolution_clock::now();
 
 	auto time = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
 	printf("%f\n", time / 1e6);
@@ -61,9 +61,21 @@ int main(int argc, char* argv[])
 // BENCH SCORE 0.001142
 // BENCH CHECK check sum = -3187.200205
 
-// BENCH DEV NVIDIA GeForce 1060M
+// BENCH DEV NVIDIA Tesla V100-SXM2-16GB
 // BENCH NAME GPU NVIDIA V100 (nvc++ -stdpar)
 // BENCH EXEC ./arrsin_nvpar_double
 // BENCH SCORE 0.002970
 // BENCH CHECK check sum = -3187.199840
+
+// BENCH DEV NVIDIA Tesla A100-SXM4-40GB
+// BENCH NAME GPU NVIDIA A100 (nvc++ -stdpar)
+// BENCH EXEC ./arrsin_nvpar_float
+// BENCH SCORE 0.001030
+// BENCH SCORE check sum = -3187.200205
+
+// BENCH DEV NVIDIA Tesla A100-SXM4-40GB
+// BENCH NAME GPU NVIDIA A100 (nvc++ -stdpar)
+// BENCH EXEC ./arrsin_nvpar_double
+// BENCH SCORE 0.005156
+// BENCH SCORE check sum = -3187.199840
 

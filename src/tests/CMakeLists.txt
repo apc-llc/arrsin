@@ -33,7 +33,7 @@ endif()
 
 if (CMAKE_NVHPC_COMPILER)
 add_executable(arrsin_nvpar_float arrsin_nvpar.cpp)
-set(GPU_ARCH 60) # Pascal
+set(GPU_ARCH 80) # Pascal
 target_compile_nvpar(arrsin_nvpar_float ${GPU_ARCH} arrsin_nvpar.cpp)
 target_compile_definitions(arrsin_nvpar_float PRIVATE FPTYPE=float)
 
