@@ -33,7 +33,9 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
-// ./arrsin_par
-// 0.290954
-// check sum = -3187.199840
+// BENCH DEV Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz
+// BENCH NAME CPU 4-core (C++)
+// BENCH EXEC ./arrsin_par
+// BENCH SCORE 0.290954
+// BENCH CHECK check sum = -3187.199840
 

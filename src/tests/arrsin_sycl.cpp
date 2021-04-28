@@ -61,12 +61,15 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
-// ./arrsin_sycl_float 
-// Executing on Intel(R) Gen9 HD Graphics NEO
-// 0.314744
-// check sum = -3187.199946
-// ./arrsin_sycl_double
-// Executing on Intel(R) Gen9 HD Graphics NEO
-// 0.435768
-// check sum = -3187.199840
+// BENCH DEV Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz
+// BENCH NAME GPU Intel float (C++)
+// BENCH EXEC ./arrsin_sycl_float
+// BENCH SCORE 0.314744
+// BENCH CHECK check sum = -3187.199946
+
+// BENCH DEV Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz
+// BENCH NAME GPU Intel double (C++)
+// BENCH EXEC ./arrsin_sycl_double
+// BENCH SCORE 0.435768
+// BENCH CHECK check sum = -3187.199840
 

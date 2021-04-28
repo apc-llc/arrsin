@@ -37,7 +37,9 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
-// ./arrsin_xsimd
-// 0.376184
-// check sum = -3187.199840
+// BENCH DEV Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz
+// BENCH NAME CPU 1-core SIMD (C++)
+// BENCH EXEC ./arrsin_xsimd
+// BENCH SCORE 0.376184
+// BENCH CHECK check sum = -3187.199840
 
