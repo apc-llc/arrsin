@@ -51,3 +51,11 @@ int main(int argc, char* argv[])
 // 0.005465
 // check sum = -3187.200205
 
+// Tesla V100-SXM2-16GB
+// ./arrsin_nvpar_double
+// 0.002970
+// check sum = -3187.199840
+// ./arrsin_nvpar_float
+// 0.001142
+// check sum = -3187.200205
+
