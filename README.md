@@ -1,6 +1,6 @@
 Name | Time | Check | Executable
 --- | --- | --- | ---
-CPU (Python) | 1.5295206309999998 | check sum = -3187.199840 | python3 ./arrsin.py
+CPU (Python) | 1.529520 | check sum = -3187.199840 | python3 ./arrsin.py
 CPU 1-core (C++) | 0.552441 | check sum = -3187.199840 | ./arrsin
 CPU 4-core (C++) | 0.290954 | check sum = -3187.199840 | ./arrsin_par
 CPU 1-core SIMD (C++) | 0.376184 | check sum = -3187.199840 | ./arrsin_xsimd
