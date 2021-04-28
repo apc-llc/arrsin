@@ -71,11 +71,11 @@ int main(int argc, char* argv[])
 // BENCH NAME GPU NVIDIA A100 (nvc++ -stdpar)
 // BENCH EXEC ./arrsin_nvpar_float
 // BENCH SCORE 0.001030
-// BENCH SCORE check sum = -3187.200205
+// BENCH CHECK check sum = -3187.200205
 
 // BENCH DEV NVIDIA Tesla A100-SXM4-40GB
 // BENCH NAME GPU NVIDIA A100 (nvc++ -stdpar)
 // BENCH EXEC ./arrsin_nvpar_double
 // BENCH SCORE 0.005156
-// BENCH SCORE check sum = -3187.199840
+// BENCH CHECK check sum = -3187.199840
 
