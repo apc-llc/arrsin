@@ -24,7 +24,7 @@ def report(src, type) :
     return result
 
 
-srcs = os.popen("find src/tests -name \"arrsin*\"").read().split("\n");
+srcs = os.popen("find ThirdParty/arrsin/src/tests -name \"arrsin*\"").read().split("\n");
 
 print("Name | Time | Check | Executable");
 

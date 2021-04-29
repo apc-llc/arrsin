@@ -1,13 +1,11 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 2.8)
 
-project(arrsin)
+project(arrsin-package)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/")
+set(CPACK_PACKAGE_NAME "example")
+set(CPACK_PACKAGE_VERSION_MAJOR "1")
+set(CPACK_PACKAGE_VERSION_MINOR "0")
+set(CPACK_PACKAGE_VERSION_PATCH "0")
 
-find_package(IntelDPCXX)
-find_package(NvidiaHpcSDK)
-
-add_subdirectory(ThirdParty/xsimd)
-
-add_subdirectory(src/tests)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/arrsin)
 
