@@ -45,7 +45,7 @@ from distutils.version import LooseVersion
 
 from setuptools.command.test import test as TestCommand
 
-def purplesetup(name, description, long_description, author, author_email, entry_points) :
+def apcllcsetup(name, description, long_description, author, author_email, entry_points) :
 
     def get_extra_cmake_options():
         """read --clean, --no, --set, --compiler-flags, and -G options from the command line and add them as cmake switches.
@@ -263,7 +263,7 @@ def purplesetup(name, description, long_description, author, author_email, entry
         long_description=long_description,
         author=author,
         author_email=author_email,
-        url='https://purplegaze.io',
+        url='https://parallel-computing.com',
         license='Copyright Applied Parallel Computing LLC',
         entry_points=entry_points,
         ext_modules=[CMakeExtension(os.path.join('ThirdParty', name))], #'tools/python')],

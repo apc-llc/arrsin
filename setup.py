@@ -11,6 +11,7 @@ apcllcsetup.apcllcsetup(
     long_description='Sample Python package to demonstrate how C++ Parallel STL can be leveraged from Python',
     author='Dmitry Mikushin',
     author_email='dmitry@kernelgen.org',
+    entry_points={},
     #entry_points={'console_scripts': ['example_console = example.console:main']},
 )
 

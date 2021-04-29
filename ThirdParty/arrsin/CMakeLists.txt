@@ -39,7 +39,6 @@ add_subdirectory(src/tests)
 pybind11_add_module(${PROJECT_NAME}_python "src/python/${PROJECT_NAME}.cpp")
 target_include_directories(${PROJECT_NAME}_python PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
 set_property(TARGET ${PROJECT_NAME}_python PROPERTY CXX_STANDARD 17)
-target_link_libraries(${PROJECT_NAME}_python PRIVATE ${PROJECT_NAME})
 set_target_properties(${PROJECT_NAME}_python PROPERTIES LIBRARY_OUTPUT_NAME "${PROJECT_NAME}")
 
 set_target_properties(${PROJECT_NAME}_python PROPERTIES

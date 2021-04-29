@@ -7,24 +7,20 @@
 #include <vector>
 #include <pybind11/pybind11.h>
 #include <pybind11/embed.h>
-#include "check.h"
 
 namespace py = pybind11;
 
 using namespace std;
 
-static void arrsin(std::vector<double>& x)
+void arrsin_par(std::vector<double>& x)
 {
-        constexpr std::size_t simd_size = xsimd::simd_type<double>::size;
-        std::size_t simd_length = x.size() / simd_size;
-
 	std::transform(std::execution::par_unseq, x.begin(), x.end(), x.begin(),
                 [&](double xi) -> double { return sin(xi); });
 }
 
-PYBIND11_MODULE(arrsin, arrsin)
+PYBIND11_MODULE(arrsin, m)
 {
 	// Define a function, which should be exported to Python
-	arrsin.def("arrsin", &arrsin, "Call a C++ Parallel STL Implementation of arrrsin");
+	m.def("arrsin_par", &arrsin_par, "Call a C++ Parallel STL Implementation of arrrsin");
 }
 

@@ -42,7 +42,7 @@ Prepare the virtual environment:
 
 ```
 git clone --recurse-submodules https://github.com/apc-llc/arrsin.git
-cd example-package
+cd arrsin
 python3 -m venv venv
 source venv/bin/activate
 ```
@@ -62,6 +62,6 @@ $ PYTHONPATH=$(pwd) python3
 >>> import numpy as np
 >>> x = np.random.uniform(-1, 1, size=(int(1e8),))
 >>> import arrsin
->>> arrsin.arrsin(x)
+>>> arrsin.arrsin_par(x)
 ```
 
